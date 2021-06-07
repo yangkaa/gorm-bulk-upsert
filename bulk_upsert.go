@@ -94,10 +94,10 @@ func upsertObjSet(db *gorm.DB, objects []interface{}, excludeColumns ...string) 
 		mainScope.SQLVars = append(mainScope.SQLVars, scope.SQLVars...)
 	}
 
-	sql := "INSERT INTO %s (%s) VALUES %s"
+	sql := "INSERT INTO %s (`%s`) VALUES %s"
 	args := []interface{}{
 		mainScope.QuotedTableName(),
-		strings.Join(dbColumns, ", "),
+		strings.Join(dbColumns, "`, `"),
 		strings.Join(placeholders, ", "),
 	}
 	if len(duplicates) > 0 {
