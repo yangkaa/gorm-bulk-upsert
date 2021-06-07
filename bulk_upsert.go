@@ -64,7 +64,7 @@ func upsertObjSet(db *gorm.DB, objects []interface{}, excludeColumns ...string) 
 			continue
 		}
 
-		duplicates = append(duplicates, fmt.Sprintf("%s=VALUES(%s)", field.DBName, field.DBName))
+		duplicates = append(duplicates, fmt.Sprintf("`%s`=VALUES(%s)", field.DBName, field.DBName))
 	}
 
 	for _, obj := range objects {
